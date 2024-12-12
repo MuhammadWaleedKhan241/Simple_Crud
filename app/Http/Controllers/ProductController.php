@@ -120,12 +120,10 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $dataRules['image'] = 'image';
         }
-
         $validator = Validator::make($request->all(), $dataRules);
         if ($validator->fails()) {
             return redirect()->route('products.edit', $id)->withInput()->withErrors($validator);
         }
-
         // Update record in the database
         $data->name = $request->input('name');
         $data->code = $request->input('code');
